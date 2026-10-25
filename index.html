@@ -1519,8 +1519,7 @@ function teammateCardHTML(p){
     ${have.length?`<div class="section-label">Skills</div><div class="tags">${have.map(k=>`<span class="tag">${escapeHTML(k)}</span>`).join('')}</div>`:'<div class="meta" style="margin-top:10px">Skills not added yet</div>'}
     ${want.length?`<div class="section-label">Looking for</div><div class="tags">${want.map(k=>`<span class="tag">${escapeHTML(k)}</span>`).join('')}</div>`:''}
     ${p.bio?`<div class="teammate-bio">${escapeHTML(p.bio)}</div>`:''}
-    <div class="teammate-actions">${action}${link?`<button class="ghost" onclick="window.open('${attr(link)}','_blank','noopener,noreferrer')">Portfolio</button>`:''}</div>
-  </article>`;
+<div class="teammate-actions">${action}${link?`<a href="${attr(link)}" target="_blank" rel="noopener noreferrer" class="ghost">Portfolio</a>`:''}</div>  </article>`;
 }
 
 function renderTeammates(){
