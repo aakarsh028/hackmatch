@@ -917,7 +917,7 @@ function renderSidebars(){
 
   <div class="side"><h4>Open events</h4>
 
-   ${events.length?events.map(e=>`<div class="side-row"><span>${escapeHTML(e.event||e.title)}</span><b>${cap(e.mode)}</b></div>`).join(''):'<div class="meta">No events posted yet.</div>'}
+   ${events.length?events.map(e=>`<div class="side-row"><span>${escapeHTML(e.event||e.title)}</span><b>${escapeHTML(cap(e.mode))}</b></div>`).join(''):'<div class="meta">No events posted yet.</div>'}
 
   </div>
 
@@ -1049,7 +1049,7 @@ function cardHTML(p){
 
   <div class="card-top"><div class="card-title">${escapeHTML(p.title)}</div><span class="badge ${badgeClass}">${badgeText}</span></div>
 
-  <div class="meta">${p.event?'🎯 '+escapeHTML(p.event):'🎯 Open to any hackathon'} · ${cap(p.mode)} · ${cap(p.pay)}</div>
+  <div class="meta">${p.event?'🎯 '+escapeHTML(p.event):'🎯 Open to any hackathon'} · ${esc(cap(p.mode))} · ${esc(cap(p.pay))}</div>
 
   ${skills.length?`<div class="tags">${skills.map(s=>`<span class="tag">${escapeHTML(s)}</span>`).join('')}</div>`:''}
 
@@ -1343,8 +1343,7 @@ function ago(t){
 
 const STATUS_TEXT={pending:'Pending',accepted:'Accepted',declined:'Declined',cancelled:'Closed',withdrawn:'Withdrawn'};
 
-const pill=st=>`<span class="pill ${st}">${STATUS_TEXT[st]||st}</span>`;
-
+const pill=st=>{const k=STATUS_TEXT[st]?st:'pending';return `<span class="pill ${k}">${STATUS_TEXT[k]}</span>`};
 function receivedCard(r,post,p){
 
  p=p||{};
