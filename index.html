@@ -633,14 +633,6 @@ document.getElementById('auth-submit').onclick=async()=>{
 
   if(error)throw error;
 
-  if(CAPTCHA_ON&&window.turnstile){
-
-   try{turnstile.reset()}catch(_){}
-
-   captchaToken=null;
-
-  }
-
   if(authMode==='signup'&&!data.session){
 
    showAuthError('Check your email to confirm your account, then log in.','var(--green)');
@@ -657,11 +649,19 @@ document.getElementById('auth-submit').onclick=async()=>{
 
  }finally{
 
-  authBusy=false;
+ authBusy=false;
 
-  button.disabled=false;
+ button.disabled=false;
+
+ if(CAPTCHA_ON&&window.turnstile){
+
+  try{turnstile.reset()}catch(_){}
+
+  captchaToken=null;
 
  }
+
+}
 
 };
 
